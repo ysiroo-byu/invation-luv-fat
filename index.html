@@ -55,6 +55,7 @@ body { background-color: #8b703a; color: #2a2a2a; overflow-x: hidden; }
 }
 #main-loader.fade-out { opacity: 0; visibility: hidden; }
 
+/* ✅ FIXED: Ornamen loading tanpa flip yang salah */
 .loader-ornament {
     position: absolute;
     width: 150px;
@@ -751,6 +752,81 @@ transition: 0.3s ease; border: none; font-size: 18px;
 .quick-action-btn.primary:hover {
   background: var(--gold);
 }
+
+/* ✅ MOBILE RESPONSIVE UNTUK SETTINGS PANEL */
+@media (max-width: 768px) {
+  /* Sidebar default hidden di mobile */
+  #settings-modal .w-64 {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    height: 100%;
+    z-index: 50;
+    transition: left 0.3s ease;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+  }
+  
+  /* Sidebar visible saat active */
+  #settings-modal .sidebar-active .w-64 {
+    left: 0;
+  }
+  
+  /* Overlay untuk mobile */
+  .settings-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 40;
+    backdrop-filter: blur(2px);
+  }
+  
+  .settings-overlay.active {
+    display: block;
+  }
+  
+  /* Tombol hamburger */
+  .menu-toggle-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background: var(--gold-ghost);
+    border: 1px solid var(--gold-pale);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    gap: 6px;
+  }
+  
+  .menu-toggle-btn:hover {
+    background: var(--gold-pale);
+  }
+  
+  /* Content full width di mobile */
+  #settings-modal .flex-1 {
+    width: 100%;
+  }
+  
+  /* Flex container jadi block di mobile */
+  #settings-modal #settings-body {
+    flex-direction: column;
+  }
+}
+
+/* Desktop: hide menu toggle */
+@media (min-width: 769px) {
+  .menu-toggle-btn {
+    display: none !important;
+  }
+  
+  .settings-overlay {
+    display: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1084,22 +1160,32 @@ transition: 0.3s ease; border: none; font-size: 18px;
 </div>
 </div>
 
-<!-- ✅ SETTINGS MODAL - STRUKTUR BARU DENGAN TABS -->
+<!-- ✅ SETTINGS MODAL - DENGAN MOBILE MENU -->
 <div id="settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999999] flex items-center justify-center opacity-0 pointer-events-none px-4">
 <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col transform scale-95" id="settings-modal-content">
-  <!-- Header -->
+  
+  <!-- Header dengan Menu Toggle untuk Mobile -->
   <div class="p-4 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl flex-shrink-0">
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 flex-1">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button onclick="toggleSettingsMenu()" class="menu-toggle-btn" style="display:none;">
+        <i class="fa-solid fa-bars"></i>
+        <span>Menu</span>
+      </button>
+      
       <h2 class="text-lg font-bold font-sans text-gray-800"><i class="fa-solid fa-cog mr-2 text-gold"></i>Pengaturan Undangan</h2>
       <span id="sync-indicator" class="sync-badge local"><i class="fa-solid fa-database"></i> Lokal</span>
     </div>
     <button onclick="closeSettings()" class="text-gray-400 hover:text-red-500 font-bold text-2xl leading-none">×</button>
   </div>
   
+  <!-- Overlay untuk mobile -->
+  <div class="settings-overlay" onclick="toggleSettingsMenu()"></div>
+  
   <!-- Content dengan Tabs -->
-  <div class="flex flex-1 overflow-hidden">
+  <div class="flex flex-1 overflow-hidden" id="settings-body">
     <!-- Sidebar Navigation -->
-    <div class="w-64 bg-gray-50 border-r border-gray-200 overflow-y-auto flex-shrink-0">
+    <div class="w-64 bg-gray-50 border-r border-gray-200 overflow-y-auto flex-shrink-0" id="settings-sidebar">
       <div class="p-4 space-y-2">
         <button onclick="switchSettingsTab('chapters')" class="settings-tab-btn w-full text-left px-4 py-3 rounded-lg font-semibold text-sm transition flex items-center gap-3 bg-gold text-white" data-tab="chapters">
           <i class="fa-solid fa-layer-group w-5"></i> Chapter/Section
@@ -2769,6 +2855,31 @@ window.switchSettingsTab = function(tabName) {
       btn.classList.remove('bg-gold', 'text-white');
     }
   });
+  
+  // ✅ Close menu di mobile setelah pilih tab
+  if (window.innerWidth <= 768) {
+    var body = $('settings-body');
+    var overlay = document.querySelector('.settings-overlay');
+    body.classList.remove('sidebar-active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+// ✅ TOGGLE SETTINGS MENU UNTUK MOBILE
+window.toggleSettingsMenu = function() {
+  var body = $('settings-body');
+  var overlay = document.querySelector('.settings-overlay');
+  
+  if (body.classList.contains('sidebar-active')) {
+    body.classList.remove('sidebar-active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  } else {
+    body.classList.add('sidebar-active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 document.addEventListener('keydown', function(e) {
