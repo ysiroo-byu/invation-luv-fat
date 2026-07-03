@@ -44,7 +44,7 @@ body { background-color: #8b703a; color: #2a2a2a; overflow-x: hidden; }
 .bg-gold { background-color: var(--gold-mid); }
 .border-gold { border-color: var(--gold-light); }
 
-/* ====== LOADING ANIMATION - NAMA MEMPELAI (BARU!) ====== */
+/* ====== LOADING ANIMATION ====== */
 #main-loader {
     position: fixed; inset: 0; 
     background: linear-gradient(135deg, #fdf9f6 0%, #f5eed8 100%); 
@@ -261,6 +261,35 @@ background: linear-gradient(135deg, var(--gold-mid), var(--gold)); color: #fff; 
 .lb-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 500; background: rgba(0, 0, 0, 0.4); padding: 4px 14px; border-radius: 20px; z-index: 50; }
 .bank-card { background: linear-gradient(135deg, #fafafa, #f5f5f5); border: 1px solid #e5e5e5; border-radius: 16px; padding: 20px; transition: 0.3s ease; }
 .bank-card:hover { border-color: var(--gold-pale); box-shadow: 0 8px 25px rgba(139, 112, 58, 0.1); transform: translateY(-2px); }
+
+/* ✅ LOGO BANK */
+.bank-logo-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-right: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.bank-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+}
+.bank-logo-wrap .bank-logo-fallback {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Poppins', sans-serif;
+}
+
 .rsvp-input { width: 100%; padding: 10px 14px; border: 2px solid #e5e7eb; border-radius: 10px; outline: none; transition: 0.3s ease; background: #fafafa; font-size: 14px; }
 .rsvp-input:focus { border-color: var(--gold-light); background: white; box-shadow: 0 0 0 3px rgba(203, 166, 87, 0.15); }
 #settings-modal, #pin-modal { transition: opacity 0.3s ease; }
@@ -286,6 +315,7 @@ background: linear-gradient(135deg, var(--gold-mid), var(--gold)); color: #fff; 
 .event-card-bottom { border-radius: 0 0 100px 100px; }
 .fix-menu { gap: 12px; padding: 8px 18px; }
 .fix-menu a { font-size: 16px; width: 32px; height: 32px; }
+.bank-logo-wrap { width: 50px; height: 50px; margin-right: 12px; }
 }
 @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); z-index: 9999; transition: width 0.1s ease-out; box-shadow: 0 0 12px rgba(203, 166, 87, 0.7); }
@@ -339,6 +369,64 @@ background: linear-gradient(135deg, var(--gold-mid), var(--gold)); color: #fff; 
 .bank-entry .remove-bank-btn:hover { background: #fee2e2; }
 .bank-entry .bank-visibility-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6b7280; cursor: pointer; }
 .bank-entry .bank-visibility-toggle input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold-mid); cursor: pointer; }
+
+/* ✅ BANK LOGO INPUT DI SETTINGS */
+.bank-logo-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-top: 6px;
+}
+.bank-logo-input-wrap .bank-logo-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    border: 1px dashed var(--gold-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.bank-logo-input-wrap .bank-logo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+}
+.bank-logo-input-wrap .bank-logo-preview .no-logo {
+    font-size: 18px;
+    color: #ccc;
+}
+.bank-logo-input-wrap .bank-logo-field {
+    flex: 1;
+    min-width: 0;
+}
+.bank-logo-input-wrap .bank-logo-field input {
+    width: 100%;
+    font-size: 11px;
+}
+.bank-logo-input-wrap .bank-logo-upload-btn {
+    background: var(--gold-mid);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.bank-logo-input-wrap .bank-logo-upload-btn:hover {
+    background: var(--gold);
+}
+
 .video-toggle-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #f9f9f9; border-radius: 10px; border: 1px solid #e5e7eb; }
 .video-toggle-row label { font-size: 13px; font-weight: 500; color: #374151; cursor: pointer; }
 .video-toggle-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold-mid); cursor: pointer; }
@@ -498,15 +586,15 @@ transition: 0.3s ease; border: none; font-size: 18px;
 <body>
 <div id="scroll-progress"></div>
 
-<!-- ✅ LOADING ANIMATION BARU - TYPING NAMA MEMPELAI -->
+<!-- ✅ LOADING ANIMATION -->
 <div id="main-loader">
-    <img src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKR.webp" class="loader-ornament tl" alt="" loading="lazy">
-    <img src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKN.webp" class="loader-ornament tr" alt="" loading="lazy">
-    <img src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKR2.webp" class="loader-ornament bl" alt="" loading="lazy">
-    <img src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKN2.webp" class="loader-ornament br" alt="" loading="lazy">
+    <img id="loader-orn-tl" src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKR.webp" class="loader-ornament tl" alt="" loading="lazy">
+    <img id="loader-orn-tr" src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKN.webp" class="loader-ornament tr" alt="" loading="lazy">
+    <img id="loader-orn-bl" src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKR2.webp" class="loader-ornament bl" alt="" loading="lazy">
+    <img id="loader-orn-br" src="https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKN2.webp" class="loader-ornament br" alt="" loading="lazy">
     
     <div class="loader-content">
-        <div class="loader-envelope">💌</div>
+        <div class="loader-envelope"></div>
         <div class="loader-label">The Wedding Of</div>
         <div class="loader-names">
             <span class="name-text" id="loader-name-text"></span>
@@ -523,7 +611,6 @@ transition: 0.3s ease; border: none; font-size: 18px;
 
 <div id="toast-container" class="fixed top-5 right-5 z-[999999] flex flex-col gap-3 pointer-events-none"></div>
 <audio id="bg-music" loop preload="auto"></audio>
-<!-- ✅ PWA INSTALL BUTTON -->
 <button id="pwa-install-btn" onclick="installPWA()" title="Install Aplikasi">
 <i class="fa-solid fa-download"></i>
 </button>
@@ -803,7 +890,6 @@ transition: 0.3s ease; border: none; font-size: 18px;
 <button data-lb-next class="lb-nav lb-next z-50"><i class="fa-solid fa-chevron-right"></i></button>
 <div class="lb-counter z-50" id="lb-counter">1 / 6</div>
 </div>
-<!-- ✅ PIN MODAL -->
 <div id="pin-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999999] flex items-center justify-center opacity-0 pointer-events-none px-4">
 <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm transform scale-95" id="pin-modal-content">
 <div class="p-6 text-center">
@@ -827,7 +913,6 @@ transition: 0.3s ease; border: none; font-size: 18px;
 </div>
 </div>
 </div>
-<!-- ✅ SETTINGS MODAL -->
 <div id="settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999999] flex items-center justify-center opacity-0 pointer-events-none px-4">
 <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] flex flex-col transform scale-95" id="settings-modal-content">
 <div class="p-4 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl flex-shrink-0">
@@ -899,7 +984,6 @@ transition: 0.3s ease; border: none; font-size: 18px;
 </div>
 </div>
 <div><label class="text-[11px] text-gray-500 font-bold">Target Countdown</label><input type="date" id="set-countdownTarget" class="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg outline-none text-sm focus:border-gold-light mt-1"></div>
-
 <div>
 <label class="text-[11px] text-gray-500 font-bold">🎵 URL Musik (.mp3)</label>
 <div class="photo-upload-row mt-1">
@@ -962,6 +1046,9 @@ transition: 0.3s ease; border: none; font-size: 18px;
 <div class="decor-section-title">🔚 Ornamen Section Footer (4 sudut)</div>
 <div class="decor-grid" id="decor-footer-grid"></div>
 
+<div class="decor-section-title">⏳ Ornamen Loading Page (4 sudut)</div>
+<div class="decor-grid" id="decor-loader-grid"></div>
+
 <button type="button" onclick="resetDecorToDefault()" class="w-full bg-gray-200 text-gray-700 py-2 rounded-lg text-xs font-semibold hover:bg-gray-300 transition mt-3">
 <i class="fa-solid fa-rotate-left mr-1"></i> Reset Semua Dekorasi ke Default
 </button>
@@ -995,15 +1082,19 @@ transition: 0.3s ease; border: none; font-size: 18px;
 </div>
 </div>
 </details>
+
+<!-- ✅ SECTION 5: REKENING DENGAN LOGO -->
 <details class="bg-gray-50 p-4 rounded-xl border border-gray-100" open>
-<summary class="text-base font-bold text-gray-800 cursor-pointer select-none">5. Rekening</summary>
+<summary class="text-base font-bold text-gray-800 cursor-pointer select-none">5. 💳 Rekening (dengan Logo)</summary>
 <div class="mt-4">
+<p class="text-[11px] text-gray-500 mb-3">Tambahkan rekening bank beserta logo untuk tampilan yang lebih profesional. Upload logo PNG untuk hasil terbaik.</p>
 <div id="bank-settings-container" class="space-y-3"></div>
 <button type="button" onclick="addBankSetting()" class="mt-3 inline-flex items-center gap-2 text-gold border border-gold rounded-lg px-4 py-2 text-sm hover:bg-gold hover:text-white transition font-medium">
 <i class="fa-solid fa-plus"></i> Tambah Rekening
 </button>
 </div>
 </details>
+
 <details class="bg-gray-50 p-4 rounded-xl border border-gray-100">
 <summary class="text-base font-bold text-gray-800 cursor-pointer select-none">6. Cerita, Galeri & Video</summary>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -1072,7 +1163,6 @@ transition: 0.3s ease; border: none; font-size: 18px;
 </div>
 </details>
 
-<!-- ✅ SECTION 8: LINK GENERATOR TAMU (BARU!) -->
 <details class="bg-gray-50 p-4 rounded-xl border border-gray-100" open>
 <summary class="text-base font-bold text-gray-800 cursor-pointer select-none">8. 🔗 Generator Link Tamu</summary>
 <div class="mt-4 space-y-3">
@@ -1137,7 +1227,7 @@ AOS.init({
 duration: 1000, once: false, mirror: true,
 easing: 'ease-out-cubic', offset: 80, anchorPlacement: 'top-bottom'
 });
-var GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbxHZX63O8l14Ksa91PIGhdkjIMsLoPodVdmV_3C9ZU0WkSEDmhaoV_lCQj4cm6R9d1g/exec";
+var GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbzOxZd0ppHMqv8mimgGmm2WJqqeXe7jwB9P_Ji2hxasZj6WneyOkKjEtjeo79hJRXrQNg/exec";
 var GALLERY_COUNT = 6;
 var FETCH_TIMEOUT = 10000;
 var ADMIN_PIN = null;
@@ -1158,7 +1248,10 @@ akadDate: "20 Juli 2026", akadTime: "09:00 WIB - Selesai", akadLokasi: "Rumah Ba
 resepsiDate: "20 Juli 2026", resepsiTime: "11:00 WIB - Selesai", resepsiLokasi: "Rumah Bapak Majik di Jajag", resepsiMapUrl: "https://maps.app.goo.gl/TeRdppG4vnbVYjZR7",
 dinnerDate: "20 Juli 2026", dinnerTime: "18:00 WIB - Selesai", dinnerLokasi: "Rumah Bapak Majik di Jajag", dinnerMapUrl: "https://maps.app.goo.gl/TeRdppG4vnbVYjZR7",
 mapIframeUrl: "https://maps.google.com/maps?width=600&height=400&hl=en&q=H54V%2BRJF%2C%20Warung%20nikmah%2C%20Jl.%20KH.%20Wahid%20Hasyim%2C%20Talunrejo%2C%20Sembulung%2C%20Kec.%20Cluring%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068486%2C%20Indonesia&t=&z=14&ie=UTF8&iwloc=B&output=embed",
-banks: [{ id: 'b1', name: 'BCA', rek: '12345678', an: 'Luvinta', visible: true }, { id: 'b2', name: 'BNI', rek: '0982309823', an: 'Fatrus', visible: true }],
+banks: [
+    { id: 'b1', name: 'BCA', rek: '12345678', an: 'Luvinta', visible: true, logo: '' },
+    { id: 'b2', name: 'BNI', rek: '0982309823', an: 'Fatrus', visible: true, logo: '' }
+],
 videoYoutubeUrl: "https://www.youtube.com/embed/7ztcdznpX9w", showVideo: true,
 galeri1: "", galeri2: "", galeri3: "", galeri4: "", galeri5: "", galeri6: "",
 countdownTarget: "2026-07-20", bukuTamu: [],
@@ -1175,7 +1268,11 @@ ornamentEventTR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AK
 ornamentFooterTL: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKR2.webp",
 ornamentFooterTR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKN2.webp",
 ornamentFooterBL: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKR.webp",
-ornamentFooterBR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKN2.webp"
+ornamentFooterBR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKN2.webp",
+loaderOrnamentTL: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKR.webp",
+loaderOrnamentTR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-AKN.webp",
+loaderOrnamentBL: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKR2.webp",
+loaderOrnamentBR: "https://indoinvite.com/nikah/template/elegan/elegan-gold/EG-BKN2.webp"
 };
 
 var decorFields = [
@@ -1183,7 +1280,8 @@ var decorFields = [
     'ornamentHomeTL', 'ornamentHomeTR', 'ornamentHomeBL', 'ornamentHomeBR',
     'ornamentCoupleTL', 'ornamentCoupleTR',
     'ornamentEventTL', 'ornamentEventTR',
-    'ornamentFooterTL', 'ornamentFooterTR', 'ornamentFooterBL', 'ornamentFooterBR'
+    'ornamentFooterTL', 'ornamentFooterTR', 'ornamentFooterBL', 'ornamentFooterBR',
+    'loaderOrnamentTL', 'loaderOrnamentTR', 'loaderOrnamentBL', 'loaderOrnamentBR'
 ];
 
 var decorMapping = {
@@ -1192,7 +1290,9 @@ var decorMapping = {
     'ornamentCoupleTL': 'orn-couple-tl', 'ornamentCoupleTR': 'orn-couple-tr',
     'ornamentEventTL': 'orn-event-tl', 'ornamentEventTR': 'orn-event-tr',
     'ornamentFooterTL': 'orn-footer-tl', 'ornamentFooterTR': 'orn-footer-tr',
-    'ornamentFooterBL': 'orn-footer-bl', 'ornamentFooterBR': 'orn-footer-br'
+    'ornamentFooterBL': 'orn-footer-bl', 'ornamentFooterBR': 'orn-footer-br',
+    'loaderOrnamentTL': 'loader-orn-tl', 'loaderOrnamentTR': 'loader-orn-tr',
+    'loaderOrnamentBL': 'loader-orn-bl', 'loaderOrnamentBR': 'loader-orn-br'
 };
 
 var decorLabels = {
@@ -1201,7 +1301,9 @@ var decorLabels = {
     'ornamentCoupleTL': 'Kiri Atas', 'ornamentCoupleTR': 'Kanan Atas',
     'ornamentEventTL': 'Kiri Atas', 'ornamentEventTR': 'Kanan Atas',
     'ornamentFooterTL': 'Kiri Atas', 'ornamentFooterTR': 'Kanan Atas',
-    'ornamentFooterBL': 'Kiri Bawah', 'ornamentFooterBR': 'Kanan Bawah'
+    'ornamentFooterBL': 'Kiri Bawah', 'ornamentFooterBR': 'Kanan Bawah',
+    'loaderOrnamentTL': 'Kiri Atas', 'loaderOrnamentTR': 'Kanan Atas',
+    'loaderOrnamentBL': 'Kiri Bawah', 'loaderOrnamentBR': 'Kanan Bawah'
 };
 
 var appData = null, dataSource = 'default', countdownInterval = null;
@@ -1214,7 +1316,6 @@ var deferredPrompt = null;
 var $ = function(id) { return document.getElementById(id); };
 var $$ = function(sel) { return document.querySelectorAll(sel); };
 
-// ✅ TYPING ANIMATION UNTUK LOADER
 function startLoaderTyping() {
     var nameEl = $('loader-name-text');
     if (!nameEl) return;
@@ -1615,6 +1716,31 @@ if (previewId === 'musicUrl' && url) {
         audio.load();
     }
 }
+
+// ✅ HANDLE BANK LOGO PREVIEW
+if (previewId.indexOf('banklogo-') === 0 && url) {
+    var bankId = previewId.replace('banklogo-', '');
+    var logoImg = document.getElementById('bank-logo-img-' + bankId);
+    if (logoImg) {
+        logoImg.src = url;
+        logoImg.style.display = 'block';
+        var noLogo = document.getElementById('bank-logo-noimg-' + bankId);
+        if (noLogo) noLogo.style.display = 'none';
+    }
+    // Update juga di data
+    if (appData && appData.banks) {
+        var bank = appData.banks.find(function(b) { return b.id === bankId; });
+        if (bank) bank.logo = url;
+    }
+}
+
+if (previewId === 'musicUrl' && url) {
+    var audio = $('bg-music');
+    if (audio) {
+        audio.src = url;
+        audio.load();
+    }
+}
 }
 
 function refreshAllPreviews(data) {
@@ -1624,6 +1750,7 @@ decorFields.forEach(function(f) { updatePreview(f, data[f] || ''); });
 updatePreview('musicUrl', data.musicUrl || '');
 }
 
+// ✅ RENDER BANK LIST (DENGAN LOGO)
 function renderBankList() {
 var container = $('bank-list-container'), emptyMsg = $('bank-empty-msg');
 if (!container) return;
@@ -1632,22 +1759,38 @@ var visibleBanks = banks.filter(function(b) { return b.visible !== false; });
 if (!visibleBanks.length) { container.innerHTML = ''; if (emptyMsg) emptyMsg.classList.remove('hidden'); return; }
 if (emptyMsg) emptyMsg.classList.add('hidden');
 container.innerHTML = visibleBanks.map(function(bank, idx) {
-return '<div class="bank-card flex items-center justify-between" data-aos="reveal-' + (idx % 2 === 0 ? 'left' : 'right') + '" data-aos-delay="' + (150 + idx * 100) + '">' +
-'<div class="text-left"><h4 class="font-bold text-gray-800 text-sm">' + escapeHtml(bank.name || 'Bank') + '</h4>' +
-'<p class="text-lg font-mono text-gray-700 my-1 tracking-wider">' + escapeHtml(bank.rek || '') + '</p>' +
-'<p class="text-xs text-gray-400">a.n. <span>' + escapeHtml(bank.an || '') + '</span></p></div>' +
-'<button onclick="copyRek(\'' + escapeHtml(bank.rek || '') + '\', this)" class="bg-gold-ghost text-gold px-4 py-2.5 rounded-xl text-xs hover:bg-gold hover:text-white transition font-semibold whitespace-nowrap">' +
-'<i class="fa-regular fa-copy mr-1"></i> Salin</button></div>';
+    var logoHtml = '';
+    if (bank.logo) {
+        logoHtml = '<div class="bank-logo-wrap"><img src="' + escapeHtml(bank.logo) + '" alt="' + escapeHtml(bank.name) + '" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div class=\\\'bank-logo-fallback\\\'>🏦</div>\';"></div>';
+    } else {
+        logoHtml = '<div class="bank-logo-wrap"><div class="bank-logo-fallback">🏦</div></div>';
+    }
+    
+    return '<div class="bank-card flex items-center justify-between" data-aos="reveal-' + (idx % 2 === 0 ? 'left' : 'right') + '" data-aos-delay="' + (150 + idx * 100) + '">' +
+    '<div class="flex items-center flex-1 min-w-0">' +
+    logoHtml +
+    '<div class="text-left flex-1 min-w-0"><h4 class="font-bold text-gray-800 text-sm">' + escapeHtml(bank.name || 'Bank') + '</h4>' +
+    '<p class="text-lg font-mono text-gray-700 my-1 tracking-wider">' + escapeHtml(bank.rek || '') + '</p>' +
+    '<p class="text-xs text-gray-400">a.n. <span>' + escapeHtml(bank.an || '') + '</span></p></div></div>' +
+    '<button onclick="copyRek(\'' + escapeHtml(bank.rek || '') + '\', this)" class="bg-gold-ghost text-gold px-4 py-2.5 rounded-xl text-xs hover:bg-gold hover:text-white transition font-semibold whitespace-nowrap">' +
+    '<i class="fa-regular fa-copy mr-1"></i> Salin</button></div>';
 }).join('');
 }
+
+// ✅ RENDER BANK SETTINGS (DENGAN LOGO UPLOAD)
 function renderBankSettings() {
 var container = $('bank-settings-container');
 if (!container) return;
 var banks = (appData && appData.banks) ? appData.banks : [];
-if (!banks.length) { banks = [{ id: 'b1', name: 'BCA', rek: '12345678', an: 'Luvinta', visible: true }, { id: 'b2', name: 'BNI', rek: '0982309823', an: 'Fatrus', visible: true }]; appData.banks = banks; }
+if (!banks.length) { banks = [{ id: 'b1', name: 'BCA', rek: '12345678', an: 'Luvinta', visible: true, logo: '' }, { id: 'b2', name: 'BNI', rek: '0982309823', an: 'Fatrus', visible: true, logo: '' }]; appData.banks = banks; }
 banks.forEach(function(b) { if (b.id && b.id.startsWith('b')) { var num = parseInt(b.id.replace('b', '')); if (num >= bankIdCounter) bankIdCounter = num + 1; } });
 container.innerHTML = banks.map(function(bank) {
 var checked = bank.visible !== false ? 'checked' : '';
+var logoUrl = bank.logo || '';
+var logoPreview = logoUrl ? '<img id="bank-logo-img-' + bank.id + '" src="' + escapeHtml(logoUrl) + '" alt="logo">' : '<span id="bank-logo-noimg-' + bank.id + '" class="no-logo"><i class="fa-regular fa-image"></i></span>';
+var logoImgStyle = logoUrl ? '' : 'style="display:none;"';
+var noLogoStyle = logoUrl ? 'style="display:none;"' : '';
+
 return '<div class="bank-entry" data-bank-id="' + bank.id + '">' +
 '<button type="button" class="remove-bank-btn" onclick="removeBankSetting(\'' + bank.id + '\')" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>' +
 '<div class="grid grid-cols-1 sm:grid-cols-4 gap-2">' +
@@ -1655,14 +1798,30 @@ return '<div class="bank-entry" data-bank-id="' + bank.id + '">' +
 '<div><label class="text-[10px] text-gray-400">No. Rekening</label><input type="text" class="bank-field-rek w-full px-2 py-1.5 border border-gray-200 rounded-lg outline-none text-xs focus:border-gold-light" value="' + escapeHtml(bank.rek || '') + '" placeholder="12345678"></div>' +
 '<div><label class="text-[10px] text-gray-400">Atas Nama</label><input type="text" class="bank-field-an w-full px-2 py-1.5 border border-gray-200 rounded-lg outline-none text-xs focus:border-gold-light" value="' + escapeHtml(bank.an || '') + '" placeholder="Nama"></div>' +
 '<div class="flex items-center justify-start sm:justify-end gap-2 pt-1"><label class="bank-visibility-toggle text-xs"><input type="checkbox" class="bank-field-visible" ' + checked + '> Tampilkan</label></div>' +
-'</div></div>';
+'</div>' +
+// ✅ BANK LOGO INPUT
+'<div class="bank-logo-input-wrap">' +
+'<div class="bank-logo-preview">' +
+'<img id="bank-logo-img-' + bank.id + '" src="' + escapeHtml(logoUrl) + '" alt="logo" ' + logoImgStyle + '>' +
+'<span id="bank-logo-noimg-' + bank.id + '" class="no-logo" ' + noLogoStyle + '><i class="fa-regular fa-image"></i></span>' +
+'</div>' +
+'<div class="bank-logo-field">' +
+'<label class="text-[10px] text-gray-400 font-semibold">🖼️ Logo Bank (PNG)</label>' +
+'<input type="text" class="bank-field-logo w-full px-2 py-1 border border-gray-200 rounded outline-none text-[10px] focus:border-gold-light mt-1" value="' + escapeHtml(logoUrl) + '" placeholder="URL logo bank">' +
+'</div>' +
+'<button type="button" class="bank-logo-upload-btn" onclick="triggerUpload(\'banklogo-' + bank.id + '\', \'banklogo-' + bank.id + '\')" title="Upload Logo">' +
+'<i class="fa-solid fa-upload"></i>' +
+'</button>' +
+'</div>' +
+'</div>';
 }).join('');
 }
+
 window.addBankSetting = function() {
 if (!appData) return;
 if (!appData.banks) appData.banks = [];
 var newId = 'b' + bankIdCounter++;
-appData.banks.push({ id: newId, name: '', rek: '', an: '', visible: true });
+appData.banks.push({ id: newId, name: '', rek: '', an: '', visible: true, logo: '' });
 renderBankSettings();
 showToast('Rekening baru ditambahkan', 'success');
 };
@@ -1673,6 +1832,8 @@ appData.banks = appData.banks.filter(function(b) { return b.id !== id; });
 renderBankSettings();
 showToast('Rekening dihapus', 'info');
 };
+
+// ✅ COLLECT BANK SETTINGS (DENGAN LOGO)
 function collectBankSettings() {
 var container = $('bank-settings-container');
 if (!container) return [];
@@ -1684,10 +1845,12 @@ var name = entry.querySelector('.bank-field-name')?.value || '';
 var rek = entry.querySelector('.bank-field-rek')?.value || '';
 var an = entry.querySelector('.bank-field-an')?.value || '';
 var visible = entry.querySelector('.bank-field-visible')?.checked !== false;
-result.push({ id: id, name: name, rek: rek, an: an, visible: visible });
+var logo = entry.querySelector('.bank-field-logo')?.value || '';
+result.push({ id: id, name: name, rek: rek, an: an, visible: visible, logo: logo });
 });
 return result;
 }
+
 window.copyRek = function(text, btn) {
 if (!text) return;
 navigator.clipboard.writeText(text).then(function() {
@@ -1797,7 +1960,8 @@ function buildDecorGrids(data) {
         'decor-home-grid': ['ornamentHomeTL', 'ornamentHomeTR', 'ornamentHomeBL', 'ornamentHomeBR'],
         'decor-couple-grid': ['ornamentCoupleTL', 'ornamentCoupleTR'],
         'decor-event-grid': ['ornamentEventTL', 'ornamentEventTR'],
-        'decor-footer-grid': ['ornamentFooterTL', 'ornamentFooterTR', 'ornamentFooterBL', 'ornamentFooterBR']
+        'decor-footer-grid': ['ornamentFooterTL', 'ornamentFooterTR', 'ornamentFooterBL', 'ornamentFooterBR'],
+        'decor-loader-grid': ['loaderOrnamentTL', 'loaderOrnamentTR', 'loaderOrnamentBL', 'loaderOrnamentBR']
     };
     
     for (var gridId in sections) {
@@ -2111,7 +2275,6 @@ showToast('Buka di Chrome/Edge untuk install', 'info');
 }
 };
 
-// ✅ LINK GENERATOR FUNCTIONS
 window.generateGuestLink = function() {
     var nameInput = $('guest-name-input');
     var name = nameInput.value.trim();
