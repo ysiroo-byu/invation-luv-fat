@@ -1268,11 +1268,11 @@ const response = await fetch(GOOGLE_API_URL);
 if (!response.ok) throw new Error('HTTP ' + response.status);
 const data = await response.json();
 if (data.status === "error") throw new Error(data.message);
-if (statusEl) statusEl.innerHTML = 'Data diterima dari cloud!';
+if (statusEl) statusEl.innerHTML = '✨ Undangan Siap Dibuka';
 return data;
 } catch (err) {
 console.warn('Fetch cloud gagal:', err.message);
-if (statusEl) statusEl.innerHTML = 'Gagal terhubung, gunakan data default...';
+if (statusEl) statusEl.innerHTML = '💝 Mempersiapkan momen terbaik...';
 return null;
 }
 }
