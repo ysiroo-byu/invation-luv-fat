@@ -1755,19 +1755,44 @@ if (e.key === 'ArrowLeft') navLightbox(-1);
 if (e.key === 'ArrowRight') navLightbox(1);
 });
 function startCountdown(target) {
-if (countdownInterval) clearInterval(countdownInterval);
-if (!target) return;
-var targetDate = new Date(target + 'T00:00:00');
-if (isNaN(targetDate.getTime())) return;
-function update() {
-var diff = targetDate.getTime() - Date.now();
-if (diff <= 0) { $('cd-days').textContent = '0'; $('cd-hours').textContent = '0'; $('cd-mins').textContent = '0'; $('cd-secs').textContent = '0'; clearInterval(countdownInterval); return; }
-$('cd-days').textContent = Math.floor(diff / 86400000);
-$('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-$('cd-mins').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-$('cd-secs').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-}
-update(); countdownInterval = setInterval(update, 1000);
+    if (countdownInterval) clearInterval(countdownInterval);
+    if (!target) return;
+
+    // ✅ PERBAIKAN: Gunakan waktu 09:30 WIB (+07:00)
+    // Format: tanggal + waktu + timezone WIB
+    var targetDate = new Date(target + 'T09:30:00+07:00');
+    
+    if (isNaN(targetDate.getTime())) {
+        console.error('Format tanggal tidak valid:', target);
+        return;
+    }
+
+    function update() {
+        var now = Date.now();
+        var diff = targetDate.getTime() - now;
+        
+        if (diff <= 0) {
+            $('cd-days').textContent = '0';
+            $('cd-hours').textContent = '00';
+            $('cd-mins').textContent = '00';
+            $('cd-secs').textContent = '00';
+            clearInterval(countdownInterval);
+            return;
+        }
+        
+        var days = Math.floor(diff / 86400000);
+        var hours = Math.floor((diff % 86400000) / 3600000);
+        var mins = Math.floor((diff % 3600000) / 60000);
+        var secs = Math.floor((diff % 60000) / 1000);
+        
+        $('cd-days').textContent = days;
+        $('cd-hours').textContent = String(hours).padStart(2, '0');
+        $('cd-mins').textContent = String(mins).padStart(2, '0');
+        $('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+    
+    update();
+    countdownInterval = setInterval(update, 1000);
 }
 window.bukaUndangan = function() {
 $('awal').classList.add('opened');
@@ -1775,7 +1800,7 @@ $('main-content').classList.remove('hidden');
 $('bottom-nav').classList.remove('hidden');
 $('audio-toggle').classList.remove('hidden');
 var audio = $('bg-music');
-audio.volume = 0.35;
+audio.volume = 0.50;
 if (!audio.src || audio.src === location.href) { if (appData && appData.musicUrl) { audio.src = appData.musicUrl; audio.load(); } }
 var playPromise = audio.play();
 if (playPromise !== undefined) {
